@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Mortgage Calculator</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <!-- Input part -->
+    <string name="home_value">Home Value :</string>
+    <string name="down_payment">Down Payment :</string>
+    <string name="apr">APR :</string>
+    <string name="tax_rate">Tax Rate :</string>
+
+    <string name="terms">Terms :</string>
+    <string name="terms_prompt">Choose a Year</string>
+    <string-array name="terms_array">
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>40</item>
+    </string-array>
+
+    <string name="dollar_sign">$</string>
+    <string name="percent_sign">%</string>
+    <string name="year_sign">Yrs</string>
+
+    <string name="calculate_button">Calculate</string>
+
+    <!-- Output part -->
+    <string name="result_part_title">Payment</string>
+    <string name="total_tax_paid">Total Tax Paid :</string>
+
+</resources>
