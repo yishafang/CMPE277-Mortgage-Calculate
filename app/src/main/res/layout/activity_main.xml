@@ -1,5 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -133,34 +137,15 @@
 
     <!-- Below is result part -->
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/calculate_button">
 
-        <TextView
-            android:id="@+id/result_part_title"
-            style="@style/result_title_style"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/result_part_title"
-            android:visibility="invisible"/>
+        <include layout="@layout/result_part"/>
 
-        <TextView
-            android:id="@+id/total_tax_paid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/total_tax_paid"
-            android:layout_below="@id/result_part_title"
-            android:visibility="invisible"/>
-
-        <EditText
-            android:id="@+id/total_tax_paid_result"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/total_tax_paid"
-            android:visibility="invisible"/>
-
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>
+</ScrollView>
+

@@ -30,5 +30,8 @@
     <!-- Output part -->
     <string name="result_part_title">Payment</string>
     <string name="total_tax_paid">Total Tax Paid :</string>
+    <string name="total_interest_paid">Total Interest Paid :</string>
+    <string name="monthly_payment">Monthly Payment :</string>
+    <string name="pay_off_date">Pay off Date :</string>
 
 </resources>

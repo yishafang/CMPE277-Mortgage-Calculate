@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/result_part"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible">
+
+    <TextView
+        android:id="@+id/result_part_title"
+        style="@style/result_title_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/result_part_title"/>
+
+    <!-- Total Tax Paid -->
+    <TextView
+        android:id="@+id/total_tax_paid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="@string/total_tax_paid"
+        android:layout_below="@id/result_part_title"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@id/total_tax_paid"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:text="@string/dollar_sign"
+        android:layout_below="@id/result_part_title"/>
+
+    <EditText
+        android:id="@+id/total_tax_paid_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_tax_paid"/>
+
+    <!-- Total Interest Paid -->
+    <TextView
+        android:id="@+id/total_interest_paid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/total_interest_paid"
+        android:layout_below="@id/total_tax_paid_result"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@id/total_interest_paid"
+        android:text="@string/dollar_sign"
+        android:layout_below="@id/total_tax_paid_result"/>
+
+    <EditText
+        android:id="@+id/total_interest_paid_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/total_interest_paid"/>
+
+    <!-- Monthly Payment -->
+    <TextView
+        android:id="@+id/monthly_payment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/monthly_payment"
+        android:layout_below="@id/total_interest_paid_result"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignEnd="@id/monthly_payment"
+        android:text="@string/dollar_sign"
+        android:layout_below="@id/total_interest_paid_result"/>
+
+    <EditText
+        android:id="@+id/monthly_payment_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/monthly_payment"/>
+
+    <!-- Pay off Date -->
+    <TextView
+        android:id="@+id/pay_off_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pay_off_date"
+        android:layout_below="@id/monthly_payment_result"/>
+
+    <EditText
+        android:id="@+id/pay_off_date_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pay_off_date"/>
+</RelativeLayout>
