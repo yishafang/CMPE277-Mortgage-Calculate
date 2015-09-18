@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:text="@string/total_tax_paid"
-        android:layout_below="@id/result_part_title"/>
+        android:layout_below="@id/result_part_title"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,13 +29,15 @@
         android:layout_alignEnd="@id/total_tax_paid"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:text="@string/dollar_sign"
-        android:layout_below="@id/result_part_title"/>
+        android:layout_below="@id/result_part_title"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/total_tax_paid_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/total_tax_paid"/>
+        android:layout_below="@id/total_tax_paid"
+        android:textColor="@android:color/white"/>
 
     <!-- Total Interest Paid -->
     <TextView
@@ -42,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/total_interest_paid"
-        android:layout_below="@id/total_tax_paid_result"/>
+        android:layout_below="@id/total_tax_paid_result"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,13 +54,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/total_interest_paid"
         android:text="@string/dollar_sign"
-        android:layout_below="@id/total_tax_paid_result"/>
+        android:layout_below="@id/total_tax_paid_result"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/total_interest_paid_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/total_interest_paid"/>
+        android:layout_below="@id/total_interest_paid"
+        android:textColor="@android:color/white"/>
 
     <!-- Monthly Payment -->
     <TextView
@@ -64,7 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/monthly_payment"
-        android:layout_below="@id/total_interest_paid_result"/>
+        android:layout_below="@id/total_interest_paid_result"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -72,13 +79,15 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/monthly_payment"
         android:text="@string/dollar_sign"
-        android:layout_below="@id/total_interest_paid_result"/>
+        android:layout_below="@id/total_interest_paid_result"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/monthly_payment_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/monthly_payment"/>
+        android:layout_below="@id/monthly_payment"
+        android:textColor="@android:color/white"/>
 
     <!-- Pay off Date -->
     <TextView
@@ -86,11 +95,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pay_off_date"
-        android:layout_below="@id/monthly_payment_result"/>
+        android:layout_below="@id/monthly_payment_result"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/pay_off_date_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/pay_off_date"/>
+        android:layout_below="@id/pay_off_date"
+        android:textColor="@android:color/white"/>
 </RelativeLayout>

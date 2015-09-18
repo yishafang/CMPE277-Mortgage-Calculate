@@ -10,6 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/background_dark_grey"
     tools:context=".MainActivity">
 
     <!-- Home Value -->
@@ -17,21 +18,24 @@
         android:id="@+id/home_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/home_value"/>
+        android:text="@string/home_value"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/home_value"
-        android:text="@string/dollar_sign"/>
+        android:text="@string/dollar_sign"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/home_value_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/home_value"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/white"/>
 
     <!-- Down Payment -->
     <TextView
@@ -39,7 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/down_payment"
-        android:layout_below="@id/home_value_field"/>
+        android:layout_below="@id/home_value_field"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,14 +52,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/down_payment"
         android:layout_below="@id/home_value_field"
-        android:text="@string/dollar_sign"/>
+        android:text="@string/dollar_sign"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/down_payment_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/down_payment"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/white"/>
 
     <!-- Interest Rate -->
     <TextView
@@ -62,7 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/apr"
-        android:layout_below="@id/down_payment_field"/>
+        android:layout_below="@id/down_payment_field"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,14 +78,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/apr"
         android:layout_below="@id/down_payment_field"
-        android:text="@string/percent_sign"/>
+        android:text="@string/percent_sign"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/apr_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/apr"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/white"/>
 
     <!-- Terms -->
     <TextView
@@ -85,7 +95,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/terms"
-        android:layout_below="@id/apr_field"/>
+        android:layout_below="@id/apr_field"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,7 +104,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/terms"
         android:layout_below="@id/apr_field"
-        android:text="@string/year_sign"/>
+        android:text="@string/year_sign"
+        android:textColor="@color/text_light_green"/>
 
     <Spinner
         android:id="@+id/terms_spinner"
@@ -101,7 +113,8 @@
         android:layout_height="wrap_content"
         android:entries="@array/terms_array"
         android:prompt="@string/terms_prompt"
-        android:layout_below="@id/terms"/>
+        android:layout_below="@id/terms"
+        android:textColor="@android:color/white"/>
 
     <!-- Property Tax Rate -->
     <TextView
@@ -109,7 +122,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tax_rate"
-        android:layout_below="@id/terms_spinner"/>
+        android:layout_below="@id/terms_spinner"
+        android:textColor="@color/text_light_green"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -117,14 +131,16 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/tax_rate"
         android:layout_below="@id/terms_spinner"
-        android:text="@string/percent_sign"/>
+        android:text="@string/percent_sign"
+        android:textColor="@color/text_light_green"/>
 
     <EditText
         android:id="@+id/tax_rate_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tax_rate"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:textColor="@android:color/white"/>
 
     <!-- Calculate Button -->
     <Button
@@ -133,7 +149,8 @@
         android:layout_height="wrap_content"
         android:text="@string/calculate_button"
         android:layout_below="@id/tax_rate_field"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/custom_button"/>
 
     <!-- Below is result part -->
 

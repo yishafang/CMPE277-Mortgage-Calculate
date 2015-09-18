@@ -1,6 +1,8 @@
 package com.example.yishafang.mortgagecalculator;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
@@ -27,13 +30,18 @@ public class MainActivity extends Activity {
     EditText monthlyPayment;
     EditText payOffDate;
 
+    // Monthly interest rate
     double i;
+    // Loan amount
     double p;
+    // Tax rate
     double t;
+    // Total months
     int n;
     int totalYears;
     double totalHomeValue;
 
+    boolean isInvalidInterest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +67,21 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 getValues();
 
-                resultPart.setVisibility(View.VISIBLE);
+                if (!isInvalidInterest) {
+                    resultPart.setVisibility(View.VISIBLE);
 
-                totalTaxPaid.setText(String.valueOf(calculateTax()));
-                totalTaxPaid.setKeyListener(null);
+                    totalTaxPaid.setText(String.valueOf(calculateTax()));
+                    totalTaxPaid.setKeyListener(null);
 
-                totalInterestPaid.setText("我还没算出来。。。");
-                totalInterestPaid.setKeyListener(null);
+                    totalInterestPaid.setText(String.valueOf(calculateInterest()));
+                    totalInterestPaid.setKeyListener(null);
 
-                monthlyPayment.setText(String.valueOf(calculateMonthly()));
-                monthlyPayment.setKeyListener(null);
+                    monthlyPayment.setText(String.valueOf(calculateMonthly()));
+                    monthlyPayment.setKeyListener(null);
 
-
+                    payOffDate.setText("我还没算出来。。。");
+                    payOffDate.setKeyListener(null);
+                }
 
             }
         });
@@ -99,12 +110,40 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //========= Private Methods =================
+
     private void getValues() {
+        // Home value
+        if (homeValue.getText().toString().equals(null) ||
+                homeValue.getText().toString().equals("")) {
+            Toast.makeText(this, "Home value is empty!", Toast.LENGTH_LONG).show();
+        } else {
+            totalHomeValue = Double.valueOf(homeValue.getText().toString());
+        }
+
+        // Down payment
+        double totalDownPayment;
+        if (downPayment.getText().toString().equals(null) ||
+                downPayment.getText().toString().equals("")) {
+            Toast.makeText(this, "Down payment is empty!", Toast.LENGTH_LONG).show();
+            totalDownPayment = 0.0;
+        } else {
+            totalDownPayment = Double.valueOf(downPayment.getText().toString());
+        }
+
         // Convert interest rate to monthly rate
-        double interest = Double.valueOf(interestRate.getText().toString());
-        i = interest / (100 * 12);
-        //double i = 0.00416667;
-        Log.i("interest_annual", interestRate.getText().toString());
+        if (interestRate.getText().toString().equals(null) ||
+                interestRate.getText().toString().equals("")) {
+            //Toast.makeText(this, "Interest rate is empty!", Toast.LENGTH_LONG).show();
+            showAlertDialog();
+        } else {
+            isInvalidInterest = false;
+
+            double interest = Double.valueOf(interestRate.getText().toString());
+            i = interest / (100 * 12);
+            //double i = 0.00416667;
+            Log.i("interest_annual", interestRate.getText().toString());
+        }
 
         // Convert terms from years to months
         totalYears = Integer.valueOf(terms.getSelectedItem().toString());
@@ -112,15 +151,14 @@ public class MainActivity extends Activity {
         //int n = 180;
         Log.i("total_years", terms.getSelectedItem().toString());
 
-        // Home value
-        totalHomeValue = Double.valueOf(homeValue.getText().toString());
-
-        // Down payment
-        double totalDownPayment = Double.valueOf(downPayment.getText().toString());
-
         // Tax rate
-        double tax = Double.valueOf(taxRate.getText().toString());
-        t = tax / 100;
+        if (taxRate.getText().toString().equals(null) ||
+                taxRate.getText().toString().equals("")) {
+            Toast.makeText(this, "Tax rate is empty!", Toast.LENGTH_LONG).show();
+        } else {
+            double tax = Double.valueOf(taxRate.getText().toString());
+            t = tax / 100;
+        }
 
         // Loan amount
         p = totalHomeValue - totalDownPayment;
@@ -135,13 +173,14 @@ public class MainActivity extends Activity {
 
     private double calculateInterest() {
 
-        return 0.0;
+        return p * (1 + i);
     }
 
     private double calculateMonthly() {
         // Calculate the term (1+i)^n
         double power = power((1 + i), n);
 
+        // Calculate the monthly tax
         double monthlyTax = totalHomeValue * t * totalYears / n;
 
         double monthly_payment = p * ((i * power) / (power - 1)) + monthlyTax;
@@ -161,5 +200,31 @@ public class MainActivity extends Activity {
             return half * half * x;
         else
             return half * half / x;
+    }
+
+    private void showAlertDialog() {
+        isInvalidInterest = true;
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // Set title
+        alertDialogBuilder.setTitle("Interest Rate is Empty!");
+
+        // Set dialog message
+        alertDialogBuilder.setMessage("Interest rate shouldn't be empty. Please fill out the interest rate. Click OK to close.").
+                setCancelable(false).
+                setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // just close the dialog box and do nothing
+                        dialog.cancel();
+                    }
+                });
+
+        // Create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // Show it
+        alertDialog.show();
     }
 }
