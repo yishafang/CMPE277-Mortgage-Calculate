@@ -14,6 +14,10 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.DateFormatSymbols;
+import java.text.DecimalFormat;
+import java.util.Calendar;
+
 
 public class MainActivity extends Activity {
 
@@ -24,6 +28,7 @@ public class MainActivity extends Activity {
     Spinner terms;
 
     Button calculateButton;
+    Button resetButton;
 
     EditText totalTaxPaid;
     EditText totalInterestPaid;
@@ -41,7 +46,7 @@ public class MainActivity extends Activity {
     int totalYears;
     double totalHomeValue;
 
-    boolean isInvalidInterest;
+    boolean isInvalidInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +72,34 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 getValues();
 
-                if (!isInvalidInterest) {
+                if (!isInvalidInput) {
                     resultPart.setVisibility(View.VISIBLE);
 
-                    totalTaxPaid.setText(String.valueOf(calculateTax()));
+                    totalTaxPaid.setText(new DecimalFormat("#,###.00").format(calculateTax()));
                     totalTaxPaid.setKeyListener(null);
 
-                    totalInterestPaid.setText(String.valueOf(calculateInterest()));
+                    totalInterestPaid.setText(new DecimalFormat("#,###.00").format(calculateInterest()));
                     totalInterestPaid.setKeyListener(null);
 
-                    monthlyPayment.setText(String.valueOf(calculateMonthly()));
+                    monthlyPayment.setText(new DecimalFormat("#,###.00").format(calculateMonthly()));
                     monthlyPayment.setKeyListener(null);
 
-                    payOffDate.setText("我还没算出来。。。");
+                    payOffDate.setText(calculatePayOffDate());
                     payOffDate.setKeyListener(null);
                 }
 
+            }
+        });
+
+        resetButton = (Button) findViewById(R.id.reset_button);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                homeValue.setText("");
+                downPayment.setText("");
+                interestRate.setText("");
+                taxRate.setText("");
+                resultPart.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -117,8 +134,19 @@ public class MainActivity extends Activity {
         if (homeValue.getText().toString().equals(null) ||
                 homeValue.getText().toString().equals("")) {
             Toast.makeText(this, "Home value is empty!", Toast.LENGTH_LONG).show();
+            String title = "Home Value is Empty!";
+            String message = "Home value shouldn't be empty. Please fill out the Home value.";
+            showAlertDialog(title, message);
         } else {
             totalHomeValue = Double.valueOf(homeValue.getText().toString());
+
+            if (totalHomeValue == 0) {
+                String title = "Home Value is 0!";
+                String message = "Home value shouldn't be 0. Please fill out the Home value.";
+                showAlertDialog(title, message);
+            } else {
+                isInvalidInput = false;
+            }
         }
 
         // Down payment
@@ -134,21 +162,26 @@ public class MainActivity extends Activity {
         // Convert interest rate to monthly rate
         if (interestRate.getText().toString().equals(null) ||
                 interestRate.getText().toString().equals("")) {
-            //Toast.makeText(this, "Interest rate is empty!", Toast.LENGTH_LONG).show();
-            showAlertDialog();
+            String title = "Interest Rate is Empty!";
+            String message = "Interest rate shouldn't be empty. Please fill out the interest rate.";
+            showAlertDialog(title, message);
         } else {
-            isInvalidInterest = false;
-
             double interest = Double.valueOf(interestRate.getText().toString());
-            i = interest / (100 * 12);
-            //double i = 0.00416667;
-            Log.i("interest_annual", interestRate.getText().toString());
+
+            if (interest == 0) {
+                String title = "Interest Rate is 0!";
+                String message = "Interest rate shouldn't be 0. Please fill out the interest rate.";
+                showAlertDialog(title, message);
+            } else {
+                isInvalidInput = false;
+                i = interest / (100 * 12);
+                Log.i("interest_annual", interestRate.getText().toString());
+            }
         }
 
         // Convert terms from years to months
         totalYears = Integer.valueOf(terms.getSelectedItem().toString());
         n = totalYears * 12;
-        //int n = 180;
         Log.i("total_years", terms.getSelectedItem().toString());
 
         // Tax rate
@@ -162,7 +195,6 @@ public class MainActivity extends Activity {
 
         // Loan amount
         p = totalHomeValue - totalDownPayment;
-        //double p = 100000;
 
     }
 
@@ -172,8 +204,11 @@ public class MainActivity extends Activity {
     }
 
     private double calculateInterest() {
-
-        return p * (1 + i);
+        // Calculate the term (1+i)^n
+        double power = power((1 + i), n);
+        double monthlyPay = p * ((i * power) / (power - 1));
+        double totalInterest = monthlyPay * n - p;
+        return totalInterest;
     }
 
     private double calculateMonthly() {
@@ -185,6 +220,17 @@ public class MainActivity extends Activity {
 
         double monthly_payment = p * ((i * power) / (power - 1)) + monthlyTax;
         return monthly_payment;
+    }
+
+    private String calculatePayOffDate() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; //  month starts at 0
+
+        String payOffMonth =  new DateFormatSymbols().getMonths()[month-2];
+        String payOffYear = String.valueOf(year + totalYears);
+
+        return payOffMonth + " " + payOffYear;
     }
 
     // calculate the x^n
@@ -202,16 +248,16 @@ public class MainActivity extends Activity {
             return half * half / x;
     }
 
-    private void showAlertDialog() {
-        isInvalidInterest = true;
+    private void showAlertDialog(String title, String message) {
+        isInvalidInput = true;
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
         // Set title
-        alertDialogBuilder.setTitle("Interest Rate is Empty!");
+        alertDialogBuilder.setTitle(title);
 
         // Set dialog message
-        alertDialogBuilder.setMessage("Interest rate shouldn't be empty. Please fill out the interest rate. Click OK to close.").
+        alertDialogBuilder.setMessage(message + " Click OK to close.").
                 setCancelable(false).
                 setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override

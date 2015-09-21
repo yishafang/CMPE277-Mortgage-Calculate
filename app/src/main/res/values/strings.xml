@@ -26,6 +26,7 @@
     <string name="year_sign">Yrs</string>
 
     <string name="calculate_button">Calculate</string>
+    <string name="reset_button">Reset</string>
 
     <!-- Output part -->
     <string name="result_part_title">Payment</string>
