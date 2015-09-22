@@ -137,13 +137,13 @@ public class InputFragment extends Fragment {
                     if (!isInvalidInput) {
                         resultPart.setVisibility(View.VISIBLE);
 
-                        totalTaxPaid.setText(new DecimalFormat("#,###.00").format(calculateTax()));
+                        totalTaxPaid.setText(new DecimalFormat("#,###.##").format(calculateTax()));
                         totalTaxPaid.setKeyListener(null);
 
-                        totalInterestPaid.setText(new DecimalFormat("#,###.00").format(calculateInterest()));
+                        totalInterestPaid.setText(new DecimalFormat("#,###.##").format(calculateInterest()));
                         totalInterestPaid.setKeyListener(null);
 
-                        monthlyPayment.setText(new DecimalFormat("#,###.00").format(calculateMonthly()));
+                        monthlyPayment.setText(new DecimalFormat("#,###.##").format(calculateMonthly()));
                         monthlyPayment.setKeyListener(null);
 
                         payOffDate.setText(calculatePayOffDate());

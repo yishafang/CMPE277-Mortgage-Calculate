@@ -15,7 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/home_value"
-        android:textColor="@color/text_light_green"/>
+        android:textColor="@color/text_light_green"
+        android:textSize="@dimen/text_size_large"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +24,9 @@
         android:layout_alignParentEnd="true"
         android:layout_alignEnd="@id/home_value"
         android:text="@string/dollar_sign"
-        android:textColor="@color/text_light_green"/>
+        android:textColor="@color/text_light_green"
+        android:textSize="@dimen/text_size_large"
+        style="@android:style/TextAppearance.DeviceDefault.Large"/>
 
     <EditText
         android:id="@+id/home_value_field"
@@ -31,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/home_value"
         android:inputType="numberDecimal"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@android:color/white"/>
 
     <!-- Down Payment -->
@@ -40,6 +44,7 @@
         android:layout_height="wrap_content"
         android:text="@string/down_payment"
         android:layout_below="@id/home_value_field"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <TextView
@@ -49,6 +54,7 @@
         android:layout_alignEnd="@id/down_payment"
         android:layout_below="@id/home_value_field"
         android:text="@string/dollar_sign"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <EditText
@@ -57,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/down_payment"
         android:inputType="numberDecimal"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@android:color/white"/>
 
     <!-- Interest Rate -->
@@ -66,6 +73,7 @@
         android:layout_height="wrap_content"
         android:text="@string/apr"
         android:layout_below="@id/down_payment_field"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <TextView
@@ -75,6 +83,7 @@
         android:layout_alignEnd="@id/apr"
         android:layout_below="@id/down_payment_field"
         android:text="@string/percent_sign"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <EditText
@@ -83,6 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/apr"
         android:inputType="numberDecimal"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@android:color/white"/>
 
     <!-- Terms -->
@@ -92,6 +102,7 @@
         android:layout_height="wrap_content"
         android:text="@string/terms"
         android:layout_below="@id/apr_field"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <TextView
@@ -101,6 +112,7 @@
         android:layout_alignEnd="@id/terms"
         android:layout_below="@id/apr_field"
         android:text="@string/year_sign"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <Spinner
@@ -119,6 +131,7 @@
         android:layout_height="wrap_content"
         android:text="@string/tax_rate"
         android:layout_below="@id/terms_spinner"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <TextView
@@ -128,6 +141,7 @@
         android:layout_alignEnd="@id/tax_rate"
         android:layout_below="@id/terms_spinner"
         android:text="@string/percent_sign"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@color/text_light_green"/>
 
     <EditText
@@ -136,6 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tax_rate"
         android:inputType="numberDecimal"
+        android:textSize="@dimen/text_size_large"
         android:textColor="@android:color/white"/>
 
     <LinearLayout
@@ -153,6 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:text="@string/reset_button"
+            android:textSize="@dimen/text_size_large"
             android:background="@drawable/custom_button"/>
 
         <!-- Calculate Button -->
@@ -162,6 +178,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:text="@string/calculate_button"
+            android:textSize="@dimen/text_size_large"
             android:background="@drawable/custom_button"/>
 
     </LinearLayout>

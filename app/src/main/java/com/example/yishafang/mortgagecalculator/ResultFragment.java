@@ -46,25 +46,16 @@ public class ResultFragment extends Fragment {
     public void displayResult() {
         InputFragment inputFragment = ((MainActivity) getActivity()).mInputFragment;
 
-        totalTaxPaid.setText(new DecimalFormat("#,###.00").format(inputFragment.calculateTax()));
+        totalTaxPaid.setText(new DecimalFormat("#,###.##").format(inputFragment.calculateTax()));
         totalTaxPaid.setKeyListener(null);
 
-        totalInterestPaid.setText(new DecimalFormat("#,###.00").format(inputFragment.calculateInterest()));
+        totalInterestPaid.setText(new DecimalFormat("#,###.##").format(inputFragment.calculateInterest()));
         totalInterestPaid.setKeyListener(null);
 
-        monthlyPayment.setText(new DecimalFormat("#,###.00").format(inputFragment.calculateMonthly()));
+        monthlyPayment.setText(new DecimalFormat("#,###.##").format(inputFragment.calculateMonthly()));
         monthlyPayment.setKeyListener(null);
 
         payOffDate.setText(inputFragment.calculatePayOffDate());
         payOffDate.setKeyListener(null);
-
-//        Bundle args = getArguments();
-//        if (args != null) {
-//
-//            totalTaxPaid.setText(String.valueOf(args.get("KEY_TAX")));
-//            totalInterestPaid.setText(String.valueOf(args.get("KEY_INTEREST")));
-//            monthlyPayment.setText(String.valueOf(args.get("KEY_MONTHLY")));
-//            payOffDate.setText(String.valueOf(args.get("KEY_DATE")));
-//        }
     }
 }

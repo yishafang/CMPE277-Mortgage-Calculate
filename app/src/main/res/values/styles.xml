@@ -11,4 +11,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="result_title_style_large" parent="result_title_style">
+        <item name="android:textSize">32sp</item>
+    </style>
+
 </resources>

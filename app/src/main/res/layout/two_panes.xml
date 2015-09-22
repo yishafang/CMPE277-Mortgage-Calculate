@@ -6,7 +6,7 @@
 
     <fragment android:id="@+id/input_fields"
         android:layout_height="fill_parent"
-        android:layout_width="600dp"
+        android:layout_width="650dp"
         android:layout_marginRight="10dp"
         class="com.example.yishafang.mortgagecalculator.InputFragment" />
     <fragment android:id="@+id/result_fields"
