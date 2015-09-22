@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.text.DateFormatSymbols;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -73,7 +75,19 @@ public class InputFragment extends Fragment {
         downPayment = (EditText) v.findViewById(R.id.down_payment_field);
         interestRate = (EditText) v.findViewById(R.id.apr_field);
         taxRate = (EditText) v.findViewById(R.id.tax_rate_field);
+
+        // Set spinner value and custom style
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(15);
+        list.add(20);
+        list.add(25);
+        list.add(30);
+        list.add(40);
+
         terms = (Spinner) v.findViewById(R.id.terms_spinner);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_item, list);
+        terms.setAdapter(adapter);
+
 
         isDualPane = ((MainActivity) getActivity()).mIsDualPane;
 
